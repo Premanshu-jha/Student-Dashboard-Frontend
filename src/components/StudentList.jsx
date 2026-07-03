@@ -82,7 +82,7 @@ const StudentList = () => {
     const saveEdit = (id) => {
         fetch(`${API_BASE_URL}/api/students/${id}`, {
             method: 'PUT',
-            headers: { 'Authorization': `Bearer ${getToken()}`},
+            headers: { 'Authorization': `Bearer ${getToken()}`, 'Content-Type': 'application/json'},
             body: JSON.stringify(editFormData)
         }).then(res => { if(res.ok) { setEditingId(null); flushStudentCache(); fetchStudents(); } });
     };
@@ -90,7 +90,7 @@ const StudentList = () => {
     const saveNewStudent = () => {
         fetch(`${API_BASE_URL}/api/students`, {
             method: 'POST',
-            headers: { 'Authorization': `Bearer ${getToken()}`},
+            headers: { 'Authorization': `Bearer ${getToken()}`, 'Content-Type': 'application/json'},
             body: JSON.stringify(addFormData)
         }).then(res => { if(res.ok) { setIsAdding(false); setAddFormData({ name: '', rollNo: '', classNum: '', city: '', phone: '', role: 'STUDENT', smsOtpByPass: false }); flushStudentCache(); fetchStudents(true); } });
     };
